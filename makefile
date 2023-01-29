@@ -18,7 +18,7 @@ ${EXEC}: ${OBJECTS}
 
 #---------------------TUNE_FS---------------------#
 
-TUNE_DEPENDENCIES = tues_tune2fs.c
+TUNE_DEPENDENCIES = tues_tune2fs.c file_t.h
 
 tues_tune2fs.o: ${TUNE_DEPENDENCIES}
 	${CXX} ${CXXFLAGS} -c tues_tune2fs.c
