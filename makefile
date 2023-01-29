@@ -1,5 +1,5 @@
 CXX = gcc
-CXXFLAGS = -g -Wall
+CXXFLAGS = -Wall
 EXEC = fs
 
 TUNE_FS = tues_tune2fs.o
@@ -16,8 +16,14 @@ endif
 ${EXEC}: ${OBJECTS}
 	${CXX} ${CXXFLAGS} -o ${EXEC} ${OBJECTS}
 
-tues_tune2fs.o: tues_tune2fs.c
+#---------------------TUNE_FS---------------------#
+
+TUNE_DEPENDENCIES = tues_tune2fs.c
+
+tues_tune2fs.o: ${TUNE_DEPENDENCIES}
 	${CXX} ${CXXFLAGS} -c tues_tune2fs.c
 
+
+#---------------------CLEAR-----------------------#
 clear:
-	rm *.o
+	${CLEAN} *.o
