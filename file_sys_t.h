@@ -33,11 +33,19 @@ typedef struct header_t
 
 } header_t;
 
-typedef struct file_t
+typedef struct file_sys_t
 {
     header_t header;
+    inode_t* inode_table;
+    u_int8_t* inode_table_bitmap; // size: (Inodes_Count / 8)
+    u_int8_t* dataBlock_table_bitmap; // size: (DataBlocks_Count / 8)
+    u_int8_t* dataBlock_table; // size: DataBlocks_Count * DataBlock_size
 
-} file_t;
+} file_sys_t;
+
+
+
+file_sys_t init_FS(int inode_count, int dataBlock_size);
 
 
 #endif
