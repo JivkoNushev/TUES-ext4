@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/types.h>
+#include <unistd.h>
 
 #include "wrapper_functions.h"
 #include "utils.h"
@@ -44,4 +46,31 @@ int str_to_int(const char *str)
     }
 
     return number;    
+}
+
+int count_bytes(int fd)
+{
+    int pos = lseek(fd, 0, SEEK_CUR);
+    if(-1 == pos)
+    {
+        return -1;
+    }
+
+    if (-1 == lseek(fd, 0, SEEK_SET))
+    {
+        return -1;
+    }
+
+    int bytes_c = 0;
+    if (-1 == (bytes_c = lseek(fd, 0, SEEK_END)))
+    {
+        return -1;
+    }
+
+    if (-1 == lseek(fd, pos, SEEK_SET))
+    {
+        return -1;
+    }
+
+    return bytes_c;
 }

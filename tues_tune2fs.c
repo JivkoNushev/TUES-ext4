@@ -27,6 +27,9 @@ int main(int argc, char const *argv[])
         fd_tofs = err_open_fd(open(argv[1], O_RDWR | O_CREAT)); // give permissions maybe
     }
 
+    //int dataBlock_count = count_bytes(fd_tofs);
+
+
     // 2) Бройката inode-ове в тази файлова система.
     int inode_count = str_to_int(argv[2]);
 
@@ -44,8 +47,8 @@ int main(int argc, char const *argv[])
     }
 
 
-    file_sys_t fs = init_FS(inode_count, dataBlock_size);
 
+    file_sys_t fs = init_FS(inode_count, dataBlock_size);
 
 
     return 0;
